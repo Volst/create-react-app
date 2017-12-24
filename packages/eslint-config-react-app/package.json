@@ -1,21 +1,24 @@
 {
-  "name": "eslint-config-react-app",
-  "version": "2.0.1",
-  "description": "ESLint configuration used by Create React App",
-  "repository": "facebookincubator/create-react-app",
+  "name": "@volst/eslint-config",
+  "version": "0.0.0",
+  "description": "Volst ESLint config, following Create React App config with a few changes",
+  "repository": "Volst/create-react-app",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/facebookincubator/create-react-app/issues"
+    "url": "https://github.com/Volst/create-react-app/issues"
   },
   "files": [
     "index.js"
   ],
+  "dependencies": {
+    "babel-eslint": "^8.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-react": "^7.5.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.14.0"
+  },
   "peerDependencies": {
-    "babel-eslint": "^7.2.3",
-    "eslint": "^4.1.1",
-    "eslint-plugin-flowtype": "^2.34.1",
-    "eslint-plugin-import": "^2.6.0",
-    "eslint-plugin-jsx-a11y": "^5.1.1",
-    "eslint-plugin-react": "^7.1.0"
+    "eslint": "^4.14.0"
   }
 }

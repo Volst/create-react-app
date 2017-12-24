@@ -1,20 +1,7 @@
-/**
- * Copyright (c) 2015-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
+// Mostly copied from https://github.com/facebookincubator/create-react-app/blob/master/packages/eslint-config-react-app
+// But with a few changes
 
 'use strict';
-
-// Inspired by https://github.com/airbnb/javascript but less opinionated.
-
-// We use eslint-loader so even warnings are very visible.
-// This is why we only use "WARNING" level for potential errors,
-// and we don't use "ERROR" level at all.
-
-// In the future, we might create a separate list of rules for production.
-// It would probably be more strict.
 
 // The ESLint browser environment defines all browser globals as valid,
 // even though most people don't know some of them exist (e.g. `name` or `status`).
@@ -80,6 +67,7 @@ var restrictedGlobals = [
   'stop',
   'toolbar',
   'top',
+  'Text',
 ];
 
 module.exports = {
@@ -87,7 +75,7 @@ module.exports = {
 
   parser: 'babel-eslint',
 
-  plugins: ['import', 'flowtype', 'jsx-a11y', 'react'],
+  plugins: ['import', 'react'],
 
   env: {
     browser: true,
@@ -216,7 +204,7 @@ module.exports = {
     ],
     'no-with': 'warn',
     'no-whitespace-before-property': 'warn',
-    radix: 'warn',
+    radix: ['warn', 'as-needed'],
     'require-yield': 'warn',
     'rest-spread-spacing': ['warn', 'never'],
     strict: ['warn', 'never'],
@@ -225,13 +213,11 @@ module.exports = {
     'valid-typeof': 'warn',
     'no-restricted-properties': [
       'error',
-      // TODO: reenable once import() is no longer slow.
-      // https://github.com/facebookincubator/create-react-app/issues/2176
-      // {
-      //   object: 'require',
-      //   property: 'ensure',
-      //   message: 'Please use import() instead. More info: https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#code-splitting',
-      // },
+      {
+        object: 'require',
+        property: 'ensure',
+        message: 'Please use import() instead. More info: https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#code-splitting',
+      },
       {
         object: 'System',
         property: 'import',
@@ -248,7 +234,6 @@ module.exports = {
     // https://github.com/yannickcr/eslint-plugin-react/tree/master/docs/rules
     'react/jsx-no-comment-textnodes': 'warn',
     'react/jsx-no-duplicate-props': ['warn', { ignoreCase: true }],
-    'react/jsx-no-target-blank': 'warn',
     'react/jsx-no-undef': 'error',
     'react/jsx-pascal-case': [
       'warn',
@@ -266,30 +251,6 @@ module.exports = {
     'react/react-in-jsx-scope': 'error',
     'react/require-render-return': 'error',
     'react/style-prop-object': 'warn',
-
-    // https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules
-    'jsx-a11y/accessible-emoji': 'warn',
-    'jsx-a11y/alt-text': 'warn',
-    'jsx-a11y/anchor-has-content': 'warn',
-    'jsx-a11y/aria-activedescendant-has-tabindex': 'warn',
-    'jsx-a11y/aria-props': 'warn',
-    'jsx-a11y/aria-proptypes': 'warn',
-    'jsx-a11y/aria-role': 'warn',
-    'jsx-a11y/aria-unsupported-elements': 'warn',
-    'jsx-a11y/heading-has-content': 'warn',
-    'jsx-a11y/href-no-hash': 'warn',
-    'jsx-a11y/iframe-has-title': 'warn',
-    'jsx-a11y/img-redundant-alt': 'warn',
-    'jsx-a11y/no-access-key': 'warn',
-    'jsx-a11y/no-distracting-elements': 'warn',
-    'jsx-a11y/no-redundant-roles': 'warn',
-    'jsx-a11y/role-has-required-aria-props': 'warn',
-    'jsx-a11y/role-supports-aria-props': 'warn',
-    'jsx-a11y/scope': 'warn',
-
-    // https://github.com/gajus/eslint-plugin-flowtype
-    'flowtype/define-flow-type': 'warn',
-    'flowtype/require-valid-file-annotation': 'warn',
-    'flowtype/use-flow-type': 'warn',
+    'react/prop-types': 'warn',
   },
 };
