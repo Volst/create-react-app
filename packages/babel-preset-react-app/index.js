@@ -7,6 +7,8 @@
 'use strict';
 
 const plugins = [
+  // class { @observable foo = 'bar' }
+  require.resolve('babel-plugin-transform-decorators-legacy'),
   // class { handleClick = () => { } }
   require.resolve('babel-plugin-transform-class-properties'),
   // The following two plugins use Object.assign directly, instead of Babel's
@@ -34,6 +36,7 @@ const plugins = [
       regenerator: true,
     },
   ],
+  require.resolve('babel-plugin-styled-components'),
 ];
 
 // This is similar to how `env` works in Babel:
@@ -95,12 +98,9 @@ if (env === 'test') {
       [
         require.resolve('babel-preset-env'),
         {
+          // We don't have to support that many browsers
           targets: {
-            // React parses on ie 9, so we should too
-            ie: 9,
-            // We currently minify with uglify
-            // Remove after https://github.com/mishoo/UglifyJS2/issues/448
-            uglify: true,
+            browsers: ['last 2 Chrome versions', 'last 2 Firefox versions']
           },
           // Disable polyfill transforms
           useBuiltIns: false,
