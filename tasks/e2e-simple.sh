@@ -64,7 +64,7 @@ function install_package {
     npm install --only=production
   fi
   # Remove our packages to ensure side-by-side versions are used (which we link)
-  rm -rf node_modules/{babel-preset-react-app,eslint-config-react-app,react-dev-utils,react-error-overlay,react-scripts}
+  rm -rf node_modules/{babel-preset-react-app,eslint-config-react-app,react-scripts}
   cd ../..
 }
 
