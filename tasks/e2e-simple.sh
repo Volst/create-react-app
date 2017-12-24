@@ -150,18 +150,8 @@ node bootstrap.js
 
 # Lint own code
 ./node_modules/.bin/eslint --max-warnings 0 packages/babel-preset-react-app/
-./node_modules/.bin/eslint --max-warnings 0 packages/create-react-app/
 ./node_modules/.bin/eslint --max-warnings 0 packages/eslint-config-react-app/
-./node_modules/.bin/eslint --max-warnings 0 packages/react-dev-utils/
 ./node_modules/.bin/eslint --max-warnings 0 packages/react-scripts/
-cd packages/react-error-overlay/
-./node_modules/.bin/eslint --max-warnings 0 src/
-npm test
-npm run build:prod
-cd ../..
-cd packages/react-dev-utils/
-npm test
-cd ../..
 
 # ******************************************************************************
 # First, test the create-react-app development environment.
