@@ -11,6 +11,7 @@
 const fs = require('fs');
 const path = require('path');
 const paths = require('./paths');
+const execSync = require('child_process').execSync;
 
 // Make sure that including paths.js after env.js will read .env variables.
 delete require.cache[require.resolve('./paths')];
@@ -60,6 +61,20 @@ process.env.NODE_PATH = (process.env.NODE_PATH || '')
   .filter(folder => folder && !path.isAbsolute(folder))
   .map(folder => path.resolve(appDirectory, folder))
   .join(path.delimiter);
+
+// Add version information so the frontend can choose to show somewhere in the app
+let version = 'dev';
+let commit = 'dev';
+if (NODE_ENV === 'production') {
+  version = execSync('git tag -l | tail -n1')
+    .toString()
+    .replace('\n', '');
+  commit = execSync('git rev-parse --short HEAD')
+    .toString()
+    .replace('\n', '');
+}
+process.env.REACT_APP_GIT_VERSION = version;
+process.env.REACT_APP_GIT_COMMIT = commit;
 
 // Grab NODE_ENV and REACT_APP_* environment variables and prepare them to be
 // injected into the application via DefinePlugin in Webpack configuration.
