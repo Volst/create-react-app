@@ -10,7 +10,7 @@
 
 const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware');
 const noopServiceWorkerMiddleware = require('react-dev-utils/noopServiceWorkerMiddleware');
-const ignoredFiles = require('react-dev-utils/ignoredFiles');
+const path = require('path');
 const config = require('./webpack.config.dev');
 const paths = require('./paths');
 
@@ -76,7 +76,13 @@ module.exports = function(proxy, allowedHost) {
     // src/node_modules is not ignored to support absolute imports
     // https://github.com/facebookincubator/create-react-app/issues/1065
     watchOptions: {
-      ignored: ignoredFiles(paths.appSrc),
+      // TODO: there is a cleaner way for this in master in create-react-app, but that fix can only be applied when react-dev-utils is released
+      ignored: new RegExp(
+        `^(?!${path
+          .normalize(paths.appSrc + '/')
+          .replace(/[\\]+/g, '\\\\')}).+[\\\\/]node_modules[\\\\/]`,
+        'g'
+      ),
     },
     // Enable HTTPS if the HTTPS environment variable is set to 'true'
     https: protocol === 'https',
