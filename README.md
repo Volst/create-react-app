@@ -11,18 +11,13 @@ Create React apps with no build configuration.
 
 The main differences with Create React App are;
 
+- Uses TypeScript, mostly copied from [create-react-app-typescript](https://github.com/wmonk/create-react-app-typescript)
 - No CSS Autoprefixer, we only support modern browsers
 - Doesn't use source maps by default
 - Support for `PUBLIC_URL` env variable in dev
-- Allows module resolving from src/ (e.g. `import 'components/foo'` works everywhere)
 - Uses [Babel Minify](https://github.com/webpack-contrib/babel-minify-webpack-plugin) instead of UglifyJs for minifying
 - Basic Electron compatibility via env variable
 - Allows custom dotenv file location (in our build system `.env` cannot live in the repository root)
-- It is allowed to use a custom .eslintrc file (CRA ignores .eslintrc files by default)
-- Babel preset:
-  - Less transpiling (we don't have to support many browsers)
-  - Uses styled-components babel plugin
-  - Uses decorator babel plugin
 - Removes most polyfills for older browsers
 - Adds Git version and commit hash to env variable so frontend can display it
 
