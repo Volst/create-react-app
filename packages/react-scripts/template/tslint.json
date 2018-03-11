@@ -1,5 +1,4 @@
 {
-    "extends": ["tslint-react"],
     "rules": {
         "ban": false,
         "class-name": true,
@@ -8,8 +7,6 @@
             "check-space"
         ],
         "interface-name": [true, "never-prefix"],
-        "jsx-no-lambda": false,
-        "jsx-no-multiline-js": false,
         "label-position": true,
         "no-any": true,
         "no-arg": true,
@@ -19,7 +16,6 @@
         "no-duplicate-variable": true,
         "no-empty": true,
         "no-eval": true,
-        "no-shadowed-variable": true,
         "no-string-literal": true,
         "no-unused-expression": true,
         "no-use-before-declare": true,
