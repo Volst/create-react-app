@@ -64,7 +64,7 @@ function install_package {
     npm install --only=production
   fi
   # Remove our packages to ensure side-by-side versions are used (which we link)
-  rm -rf node_modules/{eslint-config-react-app,react-scripts}
+  rm -rf node_modules/{eslint-config-react-app,tslint-config-react-app,react-scripts}
   cd ../..
 }
 
@@ -333,6 +333,7 @@ fi
 
 # ...but still link to the local packages
 install_package "$root_path"/packages/eslint-config-react-app
+install_package "$root_path"/packages/tslint-config-react-app
 install_package "$root_path"/packages/react-dev-utils
 
 # Test the build
