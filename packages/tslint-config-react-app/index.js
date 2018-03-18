@@ -72,7 +72,7 @@ var restrictedGlobals = [
 
 module.exports = {
   defaultSeverity: 'warning',
-  extends: ['tslint-consistent-codestyle', 'tslint-react'],
+  rulesDirectory: ['tslint-consistent-codestyle', 'tslint-react/rules'],
   rules: {
     ban: [true].concat(restrictedGlobals),
     'class-name': true,
