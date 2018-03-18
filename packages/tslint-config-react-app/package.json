@@ -1,6 +1,6 @@
 {
   "name": "@volst/tslint-config",
-  "version": "0.1.0-1",
+  "version": "0.1.0-2",
   "description": "Volst TSLint config",
   "repository": "Volst/create-react-app",
   "license": "MIT",
