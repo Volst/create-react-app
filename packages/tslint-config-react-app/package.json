@@ -1,6 +1,6 @@
 {
   "name": "@volst/tslint-config",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "description": "Volst TSLint config",
   "repository": "Volst/create-react-app",
   "license": "MIT",
@@ -11,6 +11,7 @@
     "index.js"
   ],
   "dependencies": {
+    "tslint-consistent-codestyle":"^1.12.0",
     "tslint-react": "^3.5.1"
   },
   "peerDependencies": {

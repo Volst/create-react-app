@@ -21,6 +21,7 @@
     "react-scripts": "./bin/react-scripts.js"
   },
   "dependencies": {
+    "@volst/tslint-config": "0.0.2",
     "babel-minify-webpack-plugin": "^0.3.0",
     "case-sensitive-paths-webpack-plugin": "2.1.1",
     "chalk": "2.3.2",
