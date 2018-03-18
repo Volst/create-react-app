@@ -85,7 +85,7 @@ module.exports = {
     'no-sparse-arrays': true,
     'no-unused-expression': true,
     // We cannot use tslint's own no-unused-variables since it requires tslint to run with --project.
-    'no-unused': true,
+    'no-unused': [true, 'ignore-parameters'],
     'no-conditional-assignment': true,
     'no-switch-case-fall-through': true,
     'no-string-throw': true,
