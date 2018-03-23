@@ -72,7 +72,7 @@ var restrictedGlobals = [
 
 module.exports = {
   defaultSeverity: 'warning',
-  rulesDirectory: ['tslint-consistent-codestyle', 'tslint-react/rules'],
+  rulesDirectory: ['tslint-react/rules'],
   rules: {
     ban: [true].concat(restrictedGlobals),
     'class-name': true,
@@ -84,8 +84,6 @@ module.exports = {
     'no-eval': true,
     'no-sparse-arrays': true,
     'no-unused-expression': true,
-    // We cannot use tslint's own no-unused-variables since it requires tslint to run with --project.
-    'no-unused': [true, 'ignore-parameters'],
     'no-conditional-assignment': true,
     'no-switch-case-fall-through': true,
     'no-string-throw': true,
