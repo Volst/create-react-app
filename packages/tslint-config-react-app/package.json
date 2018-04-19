@@ -8,7 +8,8 @@
     "url": "https://github.com/Volst/create-react-app/issues"
   },
   "files": [
-    "index.js"
+    "index.js",
+    "rules"
   ],
   "dependencies": {
     "tslint-react": "^3.5.1"
