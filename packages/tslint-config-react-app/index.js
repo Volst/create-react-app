@@ -8,7 +8,7 @@
 // This is dangerous as it hides accidentally undefined variables.
 // We blacklist the globals that we deem potentially confusing.
 // To use them, explicitly reference them, e.g. `window.name` or `window.status`.
-var restrictedGlobals = [
+const restrictedGlobals = [
   'addEventListener',
   'blur',
   'close',
@@ -68,13 +68,14 @@ var restrictedGlobals = [
   'toolbar',
   'top',
   'Text',
+  'Notification',
 ];
 
 module.exports = {
   defaultSeverity: 'warning',
-  rulesDirectory: ['tslint-react/rules'],
+  rulesDirectory: ['tslint-react/rules', './rules'],
   rules: {
-    ban: [true].concat(restrictedGlobals),
+    'no-restricted-globals': [true].concat(restrictedGlobals),
     'class-name': true,
     'label-position': true,
     'no-any': false,
