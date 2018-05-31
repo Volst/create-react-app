@@ -1,0 +1,20 @@
+{
+  "name": "@volst/tslint-config",
+  "version": "0.2.1",
+  "description": "Volst TSLint config",
+  "repository": "Volst/create-react-app",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Volst/create-react-app/issues"
+  },
+  "files": [
+    "index.js",
+    "rules"
+  ],
+  "dependencies": {
+    "tslint-react": "^3.5.1"
+  },
+  "peerDependencies": {
+    "tslint": "^5.9.1"
+  }
+}
