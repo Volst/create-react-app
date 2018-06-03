@@ -84,7 +84,7 @@ module.exports = {
     'no-construct': true,
     'no-eval': true,
     'no-sparse-arrays': true,
-    'no-unused-expression': true,
+    'no-unused-expression': [true, 'allow-fast-null-checks'],
     'no-conditional-assignment': true,
     'no-switch-case-fall-through': true,
     'no-string-throw': true,
