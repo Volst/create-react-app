@@ -1,6 +1,6 @@
 {
   "name": "@volst/eslint-config",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "Volst ESLint config, following Create React App config with a few changes",
   "repository": "Volst/create-react-app",
   "license": "MIT",
@@ -11,13 +11,13 @@
     "index.js"
   ],
   "dependencies": {
-    "confusing-browser-globals": "^1.0.7",
-    "babel-eslint": "^10.0.1",
-    "eslint-plugin-import": "^2.17.2",
-    "eslint-plugin-react": "^7.13.0", 
-    "eslint-plugin-react-hooks": "^1.6.0",
     "@typescript-eslint/eslint-plugin": "^1.9.0",
-    "@typescript-eslint/parser": "^1.9.0"
+    "@typescript-eslint/parser": "^1.9.0",
+    "babel-eslint": "^10.0.1",
+    "confusing-browser-globals": "^1.0.7",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-react": "^7.13.0",
+    "eslint-plugin-react-hooks": "^1.6.0"
   },
   "devDependencies": {
     "eslint": "^4.14.0"
