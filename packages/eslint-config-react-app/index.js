@@ -8,74 +8,14 @@
 // This is dangerous as it hides accidentally undefined variables.
 // We blacklist the globals that we deem potentially confusing.
 // To use them, explicitly reference them, e.g. `window.name` or `window.status`.
-var restrictedGlobals = [
-  'addEventListener',
-  'blur',
-  'close',
-  'closed',
-  'confirm',
-  'defaultStatus',
-  'defaultstatus',
-  'event',
-  'external',
-  'find',
-  'focus',
-  'frameElement',
-  'frames',
-  'history',
-  'innerHeight',
-  'innerWidth',
-  'length',
-  'location',
-  'locationbar',
-  'menubar',
-  'moveBy',
-  'moveTo',
-  'name',
-  'onblur',
-  'onerror',
-  'onfocus',
-  'onload',
-  'onresize',
-  'onunload',
-  'open',
-  'opener',
-  'opera',
-  'outerHeight',
-  'outerWidth',
-  'pageXOffset',
-  'pageYOffset',
-  'parent',
-  'print',
-  'removeEventListener',
-  'resizeBy',
-  'resizeTo',
-  'screen',
-  'screenLeft',
-  'screenTop',
-  'screenX',
-  'screenY',
-  'scroll',
-  'scrollbars',
-  'scrollBy',
-  'scrollTo',
-  'scrollX',
-  'scrollY',
-  'self',
-  'status',
-  'statusbar',
-  'stop',
-  'toolbar',
-  'top',
-  'Text',
-];
+const restrictedGlobals = require('confusing-browser-globals');
 
 module.exports = {
   root: true,
 
   parser: 'babel-eslint',
 
-  plugins: ['import', 'react'],
+  plugins: ['import', 'react', 'react-hooks'],
 
   env: {
     browser: true,
@@ -86,25 +26,81 @@ module.exports = {
   },
 
   parserOptions: {
-    ecmaVersion: 6,
+    ecmaVersion: 2018,
     sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
-      generators: true,
-      experimentalObjectRestSpread: true,
     },
   },
 
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
+
+  overrides: {
+    files: ['**/*.ts', '**/*.tsx'],
+    parser: '@typescript-eslint/parser',
+    parserOptions: {
+      ecmaVersion: 2018,
+      sourceType: 'module',
+      ecmaFeatures: {
+        jsx: true,
+      },
+
+      // typescript-eslint specific options
+      warnOnUnsupportedTypeScriptVersion: true,
+    },
+    plugins: ['@typescript-eslint'],
+    // If adding a typescript-eslint version of an existing ESLint rule,
+    // make sure to disable the ESLint rule here.
+    rules: {
+      // TypeScript's `noFallthroughCasesInSwitch` option is more robust (#6906)
+      'default-case': 'off',
+      // 'tsc' already handles this (https://github.com/typescript-eslint/typescript-eslint/issues/291)
+      'no-dupe-class-members': 'off',
+
+      // Add TypeScript specific rules (and turn off ESLint equivalents)
+      '@typescript-eslint/no-angle-bracket-type-assertion': 'warn',
+      'no-array-constructor': 'off',
+      '@typescript-eslint/no-array-constructor': 'warn',
+      '@typescript-eslint/no-namespace': 'error',
+      'no-use-before-define': 'off',
+      '@typescript-eslint/no-use-before-define': [
+        'warn',
+        {
+          functions: false,
+          classes: false,
+          variables: false,
+          typedefs: false,
+        },
+      ],
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        {
+          args: 'none',
+          ignoreRestSiblings: true,
+        },
+      ],
+      'no-useless-constructor': 'off',
+      '@typescript-eslint/no-useless-constructor': 'warn',
+    },
+  },
+
+  // NOTE: When adding rules here, you need to make sure they are compatible with
+  // `typescript-eslint`, as some rules such as `no-array-constructor` aren't compatible.
   rules: {
     // http://eslint.org/docs/rules/
     'array-callback-return': 'warn',
     'default-case': ['warn', { commentPattern: '^no default$' }],
     'dot-location': ['warn', 'property'],
-    eqeqeq: ['warn', 'allow-null'],
+    eqeqeq: ['warn', 'smart'],
     'new-parens': 'warn',
     'no-array-constructor': 'warn',
     'no-caller': 'warn',
-    'no-cond-assign': ['warn', 'always'],
+    'no-cond-assign': ['warn', 'except-parens'],
     'no-const-assign': 'warn',
     'no-control-regex': 'warn',
     'no-delete-var': 'warn',
@@ -204,7 +200,6 @@ module.exports = {
     ],
     'no-with': 'warn',
     'no-whitespace-before-property': 'warn',
-    radix: ['warn', 'as-needed'],
     'require-yield': 'warn',
     'rest-spread-spacing': ['warn', 'never'],
     strict: ['warn', 'never'],
@@ -216,15 +211,17 @@ module.exports = {
       {
         object: 'require',
         property: 'ensure',
-        message: 'Please use import() instead. More info: https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#code-splitting',
+        message:
+          'Please use import() instead. More info: https://facebook.github.io/create-react-app/docs/code-splitting',
       },
       {
         object: 'System',
         property: 'import',
         message:
-          'Please use import() instead. More info: https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#code-splitting',
+          'Please use import() instead. More info: https://facebook.github.io/create-react-app/docs/code-splitting',
       },
     ],
+    'getter-return': 'warn',
 
     // https://github.com/benmosher/eslint-plugin-import/tree/master/docs/rules
     'import/first': 'error',
@@ -232,6 +229,7 @@ module.exports = {
     'import/no-webpack-loader-syntax': 'error',
 
     // https://github.com/yannickcr/eslint-plugin-react/tree/master/docs/rules
+    'react/forbid-foreign-prop-types': ['warn', { allowInPropTypes: true }],
     'react/jsx-no-comment-textnodes': 'warn',
     'react/jsx-no-duplicate-props': ['warn', { ignoreCase: true }],
     'react/jsx-no-undef': 'error',
@@ -245,12 +243,19 @@ module.exports = {
     'react/jsx-uses-react': 'warn',
     'react/jsx-uses-vars': 'warn',
     'react/no-danger-with-children': 'warn',
-    'react/no-deprecated': 'warn',
+    // Disabled because of undesirable warnings
+    // See https://github.com/facebook/create-react-app/issues/5204 for
+    // blockers until its re-enabled
+    // 'react/no-deprecated': 'warn',
     'react/no-direct-mutation-state': 'warn',
     'react/no-is-mounted': 'warn',
+    'react/no-typos': 'error',
     'react/react-in-jsx-scope': 'error',
     'react/require-render-return': 'error',
     'react/style-prop-object': 'warn',
-    'react/prop-types': 'warn',
+
+    // https://github.com/facebook/react/tree/master/packages/eslint-plugin-react-hooks
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
   },
 };
