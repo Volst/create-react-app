@@ -41,7 +41,7 @@ module.exports = {
 
   overrides: [
     {
-      files: ['**/*.ts', '**/*.tsx'],
+      files: ['**/*.ts?(x)'],
       parser: '@typescript-eslint/parser',
       parserOptions: {
         ecmaVersion: 2018,
@@ -61,8 +61,11 @@ module.exports = {
         'default-case': 'off',
         // 'tsc' already handles this (https://github.com/typescript-eslint/typescript-eslint/issues/291)
         'no-dupe-class-members': 'off',
+        // 'tsc' already handles this (https://github.com/typescript-eslint/typescript-eslint/issues/477)
+        'no-undef': 'off',
 
         // Add TypeScript specific rules (and turn off ESLint equivalents)
+        '@typescript-eslint/consistent-type-assertions': 'warn',
         '@typescript-eslint/no-angle-bracket-type-assertion': 'warn',
         'no-array-constructor': 'off',
         '@typescript-eslint/no-array-constructor': 'warn',
@@ -75,6 +78,15 @@ module.exports = {
             classes: false,
             variables: false,
             typedefs: false,
+          },
+        ],
+        'no-unused-expressions': 'off',
+        '@typescript-eslint/no-unused-expressions': [
+          'error',
+          {
+            allowShortCircuit: true,
+            allowTernary: true,
+            allowTaggedTemplates: true,
           },
         ],
         'no-unused-vars': 'off',
@@ -148,7 +160,7 @@ module.exports = {
     'no-obj-calls': 'warn',
     'no-octal': 'warn',
     'no-octal-escape': 'warn',
-    'no-redeclare': 'warn',
+    'no-redeclare': ['warn', { builtinGlobals: false }],
     'no-regex-spaces': 'warn',
     'no-restricted-syntax': ['warn', 'WithStatement'],
     'no-script-url': 'warn',
@@ -162,7 +174,6 @@ module.exports = {
     'no-throw-literal': 'warn',
     'no-undef': 'error',
     'no-restricted-globals': ['error'].concat(restrictedGlobals),
-    'no-unexpected-multiline': 'warn',
     'no-unreachable': 'warn',
     'no-unused-expressions': [
       'warn',
@@ -202,6 +213,7 @@ module.exports = {
     ],
     'no-with': 'warn',
     'no-whitespace-before-property': 'warn',
+    'react-hooks/exhaustive-deps': 'warn',
     'require-yield': 'warn',
     'rest-spread-spacing': ['warn', 'never'],
     strict: ['warn', 'never'],
@@ -233,7 +245,7 @@ module.exports = {
     // https://github.com/yannickcr/eslint-plugin-react/tree/master/docs/rules
     'react/forbid-foreign-prop-types': ['warn', { allowInPropTypes: true }],
     'react/jsx-no-comment-textnodes': 'warn',
-    'react/jsx-no-duplicate-props': ['warn', { ignoreCase: true }],
+    'react/jsx-no-duplicate-props': 'warn',
     'react/jsx-no-undef': 'error',
     'react/jsx-pascal-case': [
       'warn',
@@ -258,6 +270,5 @@ module.exports = {
 
     // https://github.com/facebook/react/tree/master/packages/eslint-plugin-react-hooks
     'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn',
   },
 };

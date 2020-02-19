@@ -11,13 +11,13 @@
     "index.js"
   ],
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^1.9.0",
-    "@typescript-eslint/parser": "^1.9.0",
-    "babel-eslint": "^10.0.1",
-    "confusing-browser-globals": "^1.0.7",
-    "eslint-plugin-import": "^2.17.2",
-    "eslint-plugin-react": "^7.13.0",
-    "eslint-plugin-react-hooks": "^1.6.0"
+    "@typescript-eslint/eslint-plugin": "^2.20.0",
+    "@typescript-eslint/parser": "^2.20.0",
+    "babel-eslint": "^10.0.3",
+    "confusing-browser-globals": "^1.0.9",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-react": "^7.18.3",
+    "eslint-plugin-react-hooks": "^2.4.0"
   },
   "devDependencies": {
     "eslint": "^6.0.1"
