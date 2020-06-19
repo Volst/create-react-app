@@ -1,6 +1,6 @@
 {
   "name": "@volst/eslint-config",
-  "version": "4.1.1",
+  "version": "5.0.0",
   "description": "Volst ESLint config, following Create React App config with a few changes",
   "repository": "Volst/create-react-app",
   "license": "MIT",
